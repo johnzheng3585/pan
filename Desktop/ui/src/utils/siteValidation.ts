@@ -68,11 +68,13 @@ export async function exchangeTokens(
   const body = new URLSearchParams({
     grant_type: "authorization_code",
     client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
     code: code,
     redirect_uri: CALLBACK_PATH,
     code_verifier: pkceVerifier,
   });
+  if (CLIENT_SECRET) {
+    body.set("client_secret", CLIENT_SECRET);
+  }
 
   let response: Response;
   try {

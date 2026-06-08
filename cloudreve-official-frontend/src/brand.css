@@ -1,0 +1,60 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+
+button,
+input,
+textarea,
+select {
+  letter-spacing: 0;
+}
+
+.MuiPopover-paper,
+.MuiMenu-paper {
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
+  backdrop-filter: blur(12px);
+}
+
+.MuiDialog-paper {
+  box-shadow: 0 18px 56px rgba(15, 23, 42, 0.18) !important;
+}
+
+.MuiButton-containedPrimary {
+  background: #3f6fb9;
+}
+
+.MuiButton-containedPrimary:hover {
+  background: #355f9f;
+}
+
+.MuiButtonBase-root {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.MuiSnackbar-root {
+  right: 20px !important;
+}
+
+.MuiInputBase-input::placeholder {
+  color: #7b879a;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

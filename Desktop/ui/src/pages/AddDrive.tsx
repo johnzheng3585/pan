@@ -21,7 +21,7 @@ import {
 import { listen } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { CALLBACK_PATH, CLIENT_ID, SCOPES } from "../utils/constants";
-import { APP_NAME, DEFAULT_API_SITE_URL, DEFAULT_WEB_SITE_URL } from "../utils/branding";
+import { APP_NAME, DEFAULT_API_SITE_URL } from "../utils/branding";
 
 type PageState = "url_input" | "waiting" | "final_setup" | "setting_up" | "success";
 
@@ -82,16 +82,6 @@ function buildAuthorizeUrl(siteUrl: string, codeChallenge: string, state: string
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
     .join("&");
   return url.toString();
-}
-
-function getAuthorizationSiteUrl(apiSiteUrl: string): string {
-  try {
-    const apiOrigin = new URL(apiSiteUrl).origin;
-    const defaultApiOrigin = new URL(DEFAULT_API_SITE_URL).origin;
-    return apiOrigin === defaultApiOrigin ? DEFAULT_WEB_SITE_URL : apiOrigin;
-  } catch {
-    return DEFAULT_WEB_SITE_URL;
-  }
 }
 
 export default function AddDrive({ mode = "add" }: AddDriveProps) {
@@ -200,7 +190,6 @@ export default function AddDrive({ mode = "add" }: AddDriveProps) {
 
     try {
       const apiSiteUrl = urlToAuthorize.trim();
-      const authorizationSiteUrl = getAuthorizationSiteUrl(apiSiteUrl);
 
       // Validate site version first
       const version = await validateSiteVersion(apiSiteUrl);
@@ -224,7 +213,7 @@ export default function AddDrive({ mode = "add" }: AddDriveProps) {
       };
 
       // Build and open the authorization URL
-      const authUrl = buildAuthorizeUrl(authorizationSiteUrl, codeChallenge, stateValue);
+      const authUrl = buildAuthorizeUrl(apiSiteUrl, codeChallenge, stateValue);
       setAuthorizeUrl(authUrl);
       setPageState("waiting");
       await openUrl(authUrl);
