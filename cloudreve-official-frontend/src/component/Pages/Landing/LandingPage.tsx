@@ -310,10 +310,13 @@ const LandingPage = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        height: "100vh",
+        minHeight: 0,
         bgcolor: theme.palette.mode === "light" ? "#f5f7fb" : "background.default",
         color: "text.primary",
-        overflow: "auto",
+        overflowX: "hidden",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
       }}
     >
       <PageTitle title="首页" />
@@ -343,12 +346,11 @@ const LandingPage = () => {
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 7 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 }, pb: { xs: 5, md: 7 } }}>
         <Stack
           direction={{ xs: "column", md: "row" }}
           spacing={{ xs: 4, md: 6 }}
           alignItems="center"
-          sx={{ minHeight: { md: "calc(100vh - 230px)" } }}
         >
           <Box sx={{ flex: 0.9, minWidth: 0 }}>
             <Typography
