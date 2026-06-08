@@ -6,21 +6,21 @@ import { NoWrapTypography } from "../../Common/StyledComponents.tsx";
 const StyledButtonBase = styled(ButtonBase)<{
   active?: boolean;
 }>(({ theme, active }) => ({
-  borderRadius: "10px",
+  borderRadius: "12px",
   display: "flex",
   justifyContent: "left",
   alignItems: "initial",
   width: "100%",
   color: active ? theme.palette.primary.main : theme.palette.text.secondary,
   backgroundColor: active
-    ? `${theme.palette.mode === "light" ? "#e8f0fc" : alpha(theme.palette.primary.main, 0.18)}!important`
+    ? `${theme.palette.mode === "light" ? "#ffffff" : alpha(theme.palette.primary.main, 0.2)}!important`
     : "transparent",
-  border: `1px solid ${active ? alpha(theme.palette.primary.main, 0.18) : "transparent"}`,
+  border: `1px solid ${active ? alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.18 : 0.28) : "transparent"}`,
   transition:
     "background-color 180ms ease,color 180ms ease,box-shadow 180ms ease,border 180ms ease,transform 180ms ease",
-  boxShadow: active && theme.palette.mode === "light" ? "0 1px 2px rgba(63, 111, 185, 0.10)" : "none",
+  boxShadow: active && theme.palette.mode === "light" ? "0 6px 18px rgba(63, 111, 185, 0.10)" : "none",
   "& .MuiTypography-root": {
-    fontWeight: active ? 700 : 500,
+    fontWeight: active ? 760 : 560,
   },
 }));
 
@@ -36,16 +36,17 @@ export const SideNavItemBase = React.forwardRef<HTMLButtonElement, SideNavItemBa
 
 const StyledSideNavItem = styled(SideNavItemBase)<{ level?: number }>(({ theme, level }) => ({
   "&:hover": {
-    backgroundColor: theme.palette.mode === "light" ? "#edf3fb" : alpha(theme.palette.primary.main, 0.12),
+    backgroundColor: theme.palette.mode === "light" ? alpha(theme.palette.common.white, 0.72) : alpha(theme.palette.primary.main, 0.12),
     color: theme.palette.primary.main,
-    transform: "translateX(2px)",
+    transform: "translateX(3px)",
+    boxShadow: theme.palette.mode === "light" ? "0 5px 14px rgba(15, 23, 42, 0.05)" : "none",
   },
-  padding: "8px 10px",
-  paddingLeft: `${14 + (level ?? 0) * 16}px`,
-  minHeight: "36px",
+  padding: "9px 11px",
+  paddingLeft: `${15 + (level ?? 0) * 16}px`,
+  minHeight: "40px",
   display: "flex",
   alignItems: "center",
-  marginBottom: 4,
+  marginBottom: 5,
 }));
 
 export interface SideNavItemProps extends SideNavItemBaseProps {
@@ -70,7 +71,7 @@ const SideNavItem = React.forwardRef<HTMLButtonElement, SideNavItemProps>(
           sx={{
             width: 20,
             minWidth: 20,
-            mr: "9px",
+            mr: "10px",
             display: "flex",
             alignItems: "center",
             opacity: 0.9,

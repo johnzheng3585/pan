@@ -47,18 +47,20 @@ const StyledButtonBase = styled(ButtonBase)<{
   transparent?: boolean;
   isDropOver?: boolean;
 }>(({ theme, transparent, isDropOver, square, selected }) => {
-  let bgColor = theme.palette.background.paper;
+  let bgColor = theme.palette.mode === "light" ? "#ffffff" : theme.palette.background.paper;
   let bgColorHover = theme.palette.mode === "light" ? "#f8fbff" : theme.palette.grey[800];
 
   if (selected) {
-    bgColor = alpha(theme.palette.primary.main, 0.18);
+    bgColor = alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.1 : 0.18);
     bgColorHover = bgColor;
   }
   return {
     opacity: transparent ? 0.5 : 1,
-    borderRadius: 10,
+    borderRadius: 12,
     backgroundColor: bgColor,
-    border: `1px solid ${selected ? alpha(theme.palette.primary.main, 0.45) : theme.palette.divider}`,
+    border: `1px solid ${
+      selected ? alpha(theme.palette.primary.main, 0.42) : alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.76 : 1)
+    }`,
     width: "100%",
     display: "flex",
     alignItems: "stretch",
@@ -67,13 +69,15 @@ const StyledButtonBase = styled(ButtonBase)<{
     boxShadow: isDropOver
       ? `0 0 0 2px ${theme.palette.primary.light}`
       : selected
-        ? "0 8px 24px rgba(63, 111, 185, 0.14)"
-        : "0 1px 2px rgba(15, 23, 42, 0.04)",
+        ? "0 12px 30px rgba(63, 111, 185, 0.13)"
+        : theme.palette.mode === "light"
+          ? "0 1px 0 rgba(255,255,255,0.9), 0 7px 18px rgba(15, 23, 42, 0.035)"
+          : "none",
     "&:hover": {
       backgroundColor: bgColorHover,
       borderColor: alpha(theme.palette.primary.main, 0.4),
-      boxShadow: "0 8px 24px rgba(15, 23, 42, 0.08)",
-      transform: "translateY(-1px)",
+      boxShadow: theme.palette.mode === "light" ? "0 12px 28px rgba(15, 23, 42, 0.08)" : "none",
+      transform: "translateY(-2px)",
     },
     minHeight: 72,
   };
@@ -96,13 +100,13 @@ export const Header = styled(Box)(() => ({
 
 const ThumbContainer = styled(Box)(({ theme }) => ({
   flexShrink: 0,
-  borderRadius: "10px",
+  borderRadius: "11px",
   height: 68,
   width: 78,
   overflow: "hidden",
   margin: 0,
   position: "relative",
-  backgroundColor: theme.palette.mode === "light" ? "#eef7f7" : alpha(theme.palette.primary.main, 0.08),
+  backgroundColor: theme.palette.mode === "light" ? "#eef7f9" : alpha(theme.palette.primary.main, 0.08),
 }));
 
 export const FileNameText = styled(Typography)(() => ({
@@ -412,8 +416,8 @@ const GridFile = memo((props: FileBlockProps) => {
             flexDirection: "row",
             alignItems: "center",
             minHeight: 72,
-            p: 0.75,
-            gap: 1.25,
+            p: 0.85,
+            gap: 1.35,
           }}
         >
           <Header
@@ -441,7 +445,7 @@ const GridFile = memo((props: FileBlockProps) => {
                 borderRadius: 1.5,
                 backgroundColor: (theme) =>
                   theme.palette.mode === "light"
-                    ? alpha(theme.palette.primary.main, 0.07)
+                    ? alpha(theme.palette.primary.main, 0.075)
                     : alpha(theme.palette.primary.main, 0.12),
                 color: "text.secondary",
               }}

@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Box, Fade, IconButton, styled } from "@mui/material";
+import { alpha, Box, Fade, IconButton, styled } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CustomProps } from "../../../../api/explorer.ts";
@@ -247,16 +247,17 @@ export const getColumnTypeDefaults = (
 
 const ColumnContainer = styled(Box)<{
   w: number;
-}>(({ w }) => ({
-  height: "39px",
+}>(({ theme, w }) => ({
+  height: "45px",
   width: `${w}px`,
   display: "flex",
   alignItems: "center",
-  padding: "0 10px",
+  padding: "0 12px",
+  color: theme.palette.text.secondary,
 }));
 
 const DividerContainer = styled(Box)(({ theme }) => ({
-  color: theme.palette.divider,
+  color: alpha(theme.palette.text.secondary, 0.28),
   maxWidth: "10px",
   display: "flex",
   alignItems: "center",
@@ -268,7 +269,7 @@ const DividerContainer = styled(Box)(({ theme }) => ({
     duration: theme.transitions.duration.shortest,
   }),
   position: "relative",
-  right: "-8px",
+  right: "-7px",
 }));
 
 const SortArrow = styled(ArrowSortDownFilled)<{
@@ -276,7 +277,7 @@ const SortArrow = styled(ArrowSortDownFilled)<{
 }>(({ theme, direction }) => ({
   width: "18px",
   height: "18px",
-  color: !direction ? theme.palette.action.disabled : theme.palette.action.active,
+  color: !direction ? theme.palette.action.disabled : theme.palette.primary.main,
   transform: `rotate(${direction === "asc" ? 180 : 0}deg)`,
   transition: theme.transitions.create(["color", "transform"], {
     duration: theme.transitions.duration.shortest,
@@ -305,7 +306,15 @@ const Column = ({ column, showDivider, index, startResizing, sortDirection, setS
         onMouseLeave={() => setShowSortButton(false)}
         onClick={sortable ? onSortOptionChange : undefined}
       >
-        <NoWrapTypography variant={"body2"} fontWeight={600}>
+        <NoWrapTypography
+          variant={"caption"}
+          sx={{
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: 0,
+            color: "text.secondary",
+          }}
+        >
           {t(column.defaults.title, {
             metadata: column.props?.metadata_key,
           })}

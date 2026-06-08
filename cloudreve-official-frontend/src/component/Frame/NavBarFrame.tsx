@@ -50,9 +50,13 @@ const NavBarFrame = ({ variant }: NavBarFrameProps) => {
     <PageVariantContext.Provider value={variant ?? PageVariant.default}>
       <Box
         sx={{
-          bgcolor: (theme) => theme.palette.background.default,
+          bgcolor: (theme) => (theme.palette.mode === "light" ? "#f8fafc" : theme.palette.background.default),
           display: "flex",
           minHeight: "100vh",
+          backgroundImage: (theme) =>
+            theme.palette.mode === "light"
+              ? "linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(248,250,252,0) 260px)"
+              : "linear-gradient(180deg, rgba(15,23,42,0.82) 0%, rgba(11,17,32,0) 260px)",
         }}
       >
         <DndProvider backend={HTML5Backend}>

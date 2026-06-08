@@ -18,16 +18,17 @@ export const KeyIndicator = styled("code")(({ theme }) => ({
 }));
 
 const SearchButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.mode === "light" ? alpha(theme.palette.background.paper, 0.82) : theme.palette.background.paper,
   color: theme.palette.text.secondary,
-  border: `1px solid ${theme.palette.divider}`,
+  border: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.78 : 1)}`,
   pl: 2,
   pr: 4,
   minWidth: 360,
-  borderRadius: 10,
+  borderRadius: 12,
   justifyContent: "flex-start",
-  boxShadow: theme.palette.mode === "light" ? "0 1px 2px rgba(15, 23, 42, 0.04)" : "none",
-  " :hover": {
+  boxShadow: theme.palette.mode === "light" ? "0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 22px rgba(15, 23, 42, 0.04)" : "none",
+  backdropFilter: "blur(12px)",
+  "&:hover": {
     border: `1px solid ${theme.palette.primary.main}`,
     backgroundColor: alpha(theme.palette.primary.main, 0.04),
     boxShadow: "0 10px 24px rgba(63, 111, 185, 0.10)",
@@ -58,9 +59,9 @@ const SearchBar = () => {
   return (
     <SearchButton
       sx={(theme) => ({
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.mode === "light" ? alpha(theme.palette.background.paper, 0.82) : theme.palette.background.paper,
         color: theme.palette.text.disabled,
-        border: `1px solid ${theme.palette.divider}`,
+        border: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.78 : 1)}`,
         pl: 2,
         pr: 4,
         height: "100%",

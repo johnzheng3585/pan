@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Box, Drawer, Popover, PopoverProps, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { alpha, Box, Drawer, Popover, PopoverProps, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useContext, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks.ts";
 import SessionManager from "../../../session";
@@ -25,15 +25,16 @@ const DrawerContent = () => {
         spacing={1.5}
         ref={scrollRef}
         sx={{
-          px: 1.25,
-          pb: 1.5,
+          px: 1.5,
+          pb: 2,
           flexGrow: 1,
-          mx: 0.75,
+          mx: 1,
           overflow: "auto",
+          gap: 1.75,
           "& > .MuiBox-root": {
-            borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-            pt: 1.25,
-            mt: 0.5,
+            borderTop: (theme) => `1px solid ${alpha(theme.palette.divider, 0.72)}`,
+            pt: 1.5,
+            mt: 0.75,
           },
           "& > .MuiBox-root:first-of-type": {
             borderTop: "none",
@@ -77,7 +78,7 @@ const AppDrawer = () => {
   const theme = useTheme();
   const open = useAppSelector((state) => state.globalState.drawerOpen);
   const drawerWidth = useAppSelector((state) => state.globalState.drawerWidth);
-  const appBarBg = theme.palette.mode === "light" ? "#f3f6fb" : theme.palette.background.default;
+  const appBarBg = theme.palette.mode === "light" ? "#f8fafc" : theme.palette.background.default;
 
   return (
     <Drawer
@@ -89,8 +90,8 @@ const AppDrawer = () => {
           width: drawerWidth,
           boxSizing: "border-box",
           backgroundColor: appBarBg,
-          borderRight: `1px solid ${theme.palette.divider}`,
-          boxShadow: theme.palette.mode === "light" ? "inset -1px 0 0 rgba(255,255,255,0.78)" : "none",
+          borderRight: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.58 : 0.86)}`,
+          boxShadow: theme.palette.mode === "light" ? "inset -1px 0 0 rgba(255,255,255,0.86)" : "none",
         },
       }}
       variant="persistent"

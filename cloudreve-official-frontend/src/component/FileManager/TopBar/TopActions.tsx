@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Button, ButtonGroup, styled, useMediaQuery, useTheme } from "@mui/material";
+import { alpha, Button, ButtonGroup, styled, useMediaQuery, useTheme } from "@mui/material";
 import { bindPopover } from "material-ui-popup-state";
 import { bindMenu, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 import { useContext } from "react";
@@ -15,27 +15,51 @@ import { FmIndexContext } from "../FmIndexContext.tsx";
 import MoreActionMenu from "./MoreActionMenu.tsx";
 
 export const ActionButton = styled(Button)(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  color: theme.palette.text.primary,
-  borderRadius: "8px!important",
-  minWidth: 40,
-  backgroundColor: theme.palette.background.paper,
-  marginLeft: "4px!important",
+  border: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.82 : 0.9)}`,
+  color: theme.palette.text.secondary,
+  borderRadius: "11px!important",
+  minWidth: 38,
+  minHeight: 38,
+  paddingInline: theme.spacing(1.25),
+  backgroundColor: "transparent",
+  marginLeft: "0!important",
+  boxShadow: "none",
+  fontWeight: 600,
+  transition: theme.transitions.create(["background-color", "border-color", "box-shadow", "color", "transform"], {
+    duration: theme.transitions.duration.shorter,
+  }),
   "&:hover": {
-    borderColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.mode === "light" ? "#f3f7ff" : theme.palette.action.hover,
+    borderColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.3 : 0.42),
+    color: theme.palette.primary.main,
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.07 : 0.16),
+    boxShadow: theme.palette.mode === "light" ? "0 8px 20px rgba(63, 111, 185, 0.08)" : "none",
+    transform: "translateY(-1px)",
+  },
+  "&.Mui-disabled": {
+    borderColor: alpha(theme.palette.divider, 0.5),
+    color: theme.palette.text.disabled,
+    backgroundColor: "transparent",
   },
 }));
 
 export const ActionButtonGroup = styled(ButtonGroup)(({ theme }) => ({
+  padding: 3,
+  gap: 4,
+  minHeight: 44,
+  borderRadius: 14,
+  border: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.72 : 0.9)}`,
+  backgroundColor:
+    theme.palette.mode === "light" ? alpha(theme.palette.background.paper, 0.72) : alpha(theme.palette.background.paper, 0.18),
+  boxShadow: theme.palette.mode === "light" ? "0 1px 2px rgba(15, 23, 42, 0.03)" : "none",
   "& .MuiButtonGroup-firstButton, .MuiButtonGroup-middleButton, .MuiButtonGroup-lastButton": {
+    border: "0!important",
     "&:hover": {
-      "border-color": theme.palette.primary.main,
+      borderColor: "transparent",
     },
   },
-  height: "100%",
-  gap: 0,
-  boxShadow: "none",
+  "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+    borderRight: "0!important",
+  },
 }));
 
 const TopActions = () => {

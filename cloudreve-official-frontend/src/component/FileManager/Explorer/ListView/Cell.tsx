@@ -1,5 +1,16 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Box, Fade, Grow, InputBase, PopoverProps, Tooltip, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  alpha,
+  Box,
+  Fade,
+  Grow,
+  InputBase,
+  PopoverProps,
+  Tooltip,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { sizeToString } from "../../../../util";
 import CrUri, { SearchParam } from "../../../../util/uri.ts";
@@ -204,10 +215,26 @@ const FileNameCell = memo((props: CellProps) => {
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: 1,
+          gap: 1.4,
+          minWidth: 0,
         }}
       >
-        <Box {...(noThumb || isMobile || isTouch ? {} : hoverState)}>
+        <Box
+          {...(noThumb || isMobile || isTouch ? {} : hoverState)}
+          sx={{
+            width: 30,
+            height: 30,
+            position: "relative",
+            borderRadius: 1.5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            bgcolor: isSelected
+              ? alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.12 : 0.22)
+              : alpha(theme.palette.text.secondary, theme.palette.mode === "light" ? 0.07 : 0.12),
+            flexShrink: 0,
+          }}
+        >
           <FileSmallIcon variant={"list"} selected={!!isSelected} file={file} />
         </Box>
 
@@ -233,7 +260,17 @@ const FileNameCell = memo((props: CellProps) => {
           />
         ) : (
           <Tooltip title={file.name} disableInteractive>
-            <NoWrapBox onClick={onNameClick} onDoubleClick={onNameDoubleClick}>
+            <NoWrapBox
+              onClick={onNameClick}
+              onDoubleClick={onNameDoubleClick}
+              sx={{
+                minWidth: 0,
+                fontWeight: 760,
+                color: isSelected ? "primary.main" : "text.primary",
+                lineHeight: 1.25,
+                transition: "color 180ms ease",
+              }}
+            >
               {search?.name ? (
                 <Highlighter
                   highlightClassName="highlight-marker"
@@ -274,7 +311,7 @@ const FolderSizeCell = memo(({ file }: FolderSizeCellProps) => {
   if (file.type == FileType.folder || file.metadata?.[Metadata.share_redirect]) {
     return <Box />;
   }
-  return <Box>{sizeToString(file.size)}</Box>;
+  return <Box sx={{ color: "text.secondary", fontSize: 13, fontVariantNumeric: "tabular-nums" }}>{sizeToString(file.size)}</Box>;
 });
 
 interface FolderDateCellProps {

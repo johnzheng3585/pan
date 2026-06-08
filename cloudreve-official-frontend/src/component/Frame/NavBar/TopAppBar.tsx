@@ -30,7 +30,7 @@ const TopAppBar = () => {
   const musicPlayer = useAppSelector((state) => state.globalState.musicPlayer);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(null);
 
-  const appBarBg = theme.palette.mode === "light" ? "#f8fafc" : theme.palette.background.default;
+  const appBarBg = theme.palette.mode === "light" ? alpha(theme.palette.background.paper, 0.78) : alpha(theme.palette.background.default, 0.82);
   const onMobileMenuClicked = (e: React.MouseEvent<HTMLElement>) => {
     setMobileMenuAnchor(e.currentTarget);
     dispatch(setMobileDrawerOpen(true));
@@ -51,9 +51,11 @@ const TopAppBar = () => {
           duration: theme.transitions.duration.leavingScreen,
         }),
         backgroundColor: appBarBg,
-        color: theme.palette.getContrastText(appBarBg),
-        borderBottom: `1px solid ${theme.palette.divider}`,
-        backdropFilter: "blur(14px)",
+        color: theme.palette.text.primary,
+        borderBottom: `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.62 : 0.9)}`,
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
+        boxShadow: theme.palette.mode === "light" ? "0 1px 0 rgba(255,255,255,0.82)" : "none",
         ...(open &&
           !isMobile && {
             width: `calc(100% - ${drawerWidth}px)`,
@@ -70,7 +72,7 @@ const TopAppBar = () => {
         sx={{
           "&.MuiToolbar-root.MuiToolbar-gutters": {
             minHeight: isMobile ? 56 : 64,
-            paddingLeft: open && !isMobile ? theme.spacing(2) : theme.spacing(isMobile ? 2 : 3),
+            paddingLeft: open && !isMobile ? theme.spacing(2.5) : theme.spacing(isMobile ? 2 : 3),
             paddingRight: theme.spacing(isMobile ? 1.5 : 3),
             transition: theme.transitions.create("padding", {
               easing: theme.transitions.easing.easeInOut,
@@ -89,7 +91,8 @@ const TopAppBar = () => {
             sx={{
               mr: isMobile ? 1 : 1.5,
               ml: isMobile ? -1 : -1.5,
-              backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.07 : 0.14),
+              backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.08 : 0.14),
+              border: `1px solid ${alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.12 : 0.2)}`,
               "&:hover": {
                 backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.12 : 0.2),
               },

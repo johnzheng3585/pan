@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Button, Skeleton, styled, SvgIconProps, Tooltip } from "@mui/material";
+import { alpha, Button, Skeleton, styled, SvgIconProps, Tooltip } from "@mui/material";
 import { bindHover, bindPopover } from "material-ui-popup-state";
 import { usePopupState } from "material-ui-popup-state/hooks";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -37,9 +37,16 @@ import ShareInfoPopover from "./ShareInfoPopover.tsx";
 export const BreadcrumbButtonBase = styled(Button)<{ isDropOver?: boolean }>(({ theme, isDropOver }) => ({
   color: theme.palette.text.secondary,
   transition: "all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important",
-  transitionProperty: "background-color,opacity,box-shadow",
+  transitionProperty: "background-color,opacity,box-shadow,color,transform",
   boxShadow: isDropOver ? `inset 0 0 0 2px ${theme.palette.primary.light}` : "none",
-  minHeight: theme.spacing(4),
+  minHeight: theme.spacing(4.5),
+  borderRadius: "12px",
+  paddingLeft: theme.spacing(1),
+  paddingRight: theme.spacing(1),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.06 : 0.16),
+    color: theme.palette.primary.main,
+  },
 }));
 
 export interface BreadcrumbButtonProps {
@@ -231,7 +238,7 @@ const BreadcrumbButton = ({ name, is_root, is_latest, path, displayOnly, ...rest
     is_root,
     count_share_views: true,
   });
-  const maxWidth = is_latest ? "300px" : is_root ? "initial" : "100px";
+  const maxWidth = is_latest ? "420px" : is_root ? "initial" : "140px";
   const StartIcon = useMemo(() => {
     if (loading) {
       return <Skeleton width={18} height={18} variant={"rounded"} />;
@@ -264,12 +271,23 @@ const BreadcrumbButton = ({ name, is_root, is_latest, path, displayOnly, ...rest
         isDropOver={isOver}
         sx={{
           transition: (theme) =>
-            theme.transitions.create(["max-width", "color", "background-color"], {
+            theme.transitions.create(["max-width", "color", "background-color", "font-size"], {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.standard,
             }),
           color: (theme) => (is_latest && !displayOnly ? theme.palette.text.primary : theme.palette.text.secondary),
           maxWidth: maxWidth,
+          minWidth: is_latest ? 0 : undefined,
+          px: is_latest ? 1.25 : 1,
+          fontWeight: is_latest ? 800 : 600,
+          fontSize: is_latest ? { xs: "1rem", sm: "1.08rem" } : "0.86rem",
+          letterSpacing: 0,
+          backgroundColor: (theme) =>
+            is_latest && !displayOnly ? alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.04 : 0.12) : "transparent",
+          "& .MuiButton-startIcon": {
+            mr: 0.75,
+            color: (theme) => (is_latest ? theme.palette.primary.main : theme.palette.text.secondary),
+          },
         }}
         startIcon={StartIcon}
         endIcon={is_latest && !is_root && !displayOnly ? <CaretDown sx={{ fontSize: "12px!important" }} /> : undefined}

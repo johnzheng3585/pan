@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { Box, ClickAwayListener, Menu, styled, TextField, useMediaQuery, useTheme } from "@mui/material";
+import { alpha, Box, ClickAwayListener, Menu, styled, TextField, useMediaQuery, useTheme } from "@mui/material";
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useIsOverflow } from "../../../hooks/useOverflow.tsx";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks.ts";
@@ -29,10 +29,10 @@ const PathTextField = styled(TextField)(() => ({
 }));
 
 const RightIcon = styled(ChevronRight)(({ theme }) => ({
-  fontSize: 15,
-  mx: 0.5,
+  fontSize: 18,
+  mx: 0.25,
   verticalAlign: "middle",
-  color: theme.palette.text.disabled,
+  color: alpha(theme.palette.text.secondary, 0.45),
 }));
 
 interface pathElements extends BreadcrumbButtonProps {}
@@ -178,9 +178,16 @@ const Breadcrumb = (props: BreadcrumbProps) => {
         ref={props.displayOnly ? undefined : chainRef}
         sx={{
           flexGrow: 1,
+          display: "flex",
+          alignItems: "center",
+          minWidth: 0,
           whiteSpace: props.displayOnly ? "initial" : "nowrap",
           cursor: "text",
-          overflow: "auto",
+          overflow: "hidden",
+          py: 0.25,
+          "& .MuiButton-root": {
+            textTransform: "none",
+          },
         }}
         onClick={onEdit}
       >

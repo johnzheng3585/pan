@@ -1,6 +1,6 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
 import Column, { ListViewColumn } from "./Column.tsx";
-import { Box, Fade, IconButton, Tooltip } from "@mui/material";
+import { alpha, Box, Fade, IconButton, Tooltip } from "@mui/material";
 import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import { FmIndexContext } from "../../FmIndexContext.tsx";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks.ts";
@@ -91,7 +91,19 @@ const ListHeader = ({ setColumns, commitColumnSetting, columns }: ListHeaderProp
       onMouseLeave={() => setShowDivider(false)}
       sx={{
         display: "flex",
-        borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        position: "sticky",
+        top: 0,
+        zIndex: 2,
+        minHeight: 46,
+        alignItems: "center",
+        borderBottom: (theme) => `1px solid ${alpha(theme.palette.divider, theme.palette.mode === "light" ? 0.68 : 0.9)}`,
+        bgcolor: (theme) =>
+          theme.palette.mode === "light"
+            ? alpha(theme.palette.background.paper, 0.86)
+            : alpha(theme.palette.background.default, 0.82),
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        boxShadow: (theme) => (theme.palette.mode === "light" ? "0 10px 22px rgba(15, 23, 42, 0.03)" : "none"),
       }}
     >
       {columns.map((column, index) => (

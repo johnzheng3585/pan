@@ -312,7 +312,7 @@ const LandingPage = () => {
       sx={{
         height: "100vh",
         minHeight: 0,
-        bgcolor: theme.palette.mode === "light" ? "#f5f7fb" : "background.default",
+        bgcolor: theme.palette.mode === "light" ? "#f8fafc" : "background.default",
         color: "text.primary",
         overflowX: "hidden",
         overflowY: "auto",

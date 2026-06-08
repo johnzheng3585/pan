@@ -57,6 +57,10 @@ export const applyThemeWithOverrides = (themeConfig: ThemeOptions): ThemeOptions
             textTransform: "none",
             borderRadius: 8,
             fontWeight: 600,
+            transition: "background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease",
+            "&:active": {
+              transform: "translateY(1px)",
+            },
           },
           outlined: ({ theme }) => ({
             borderColor: theme.palette.divider,
@@ -120,6 +124,10 @@ export const applyThemeWithOverrides = (themeConfig: ThemeOptions): ThemeOptions
             borderRadius: "8px",
             border: "1px solid",
             borderColor: theme.palette.divider,
+            boxShadow:
+              theme.palette.mode === "light"
+                ? "0 18px 46px rgba(15, 23, 42, 0.14)"
+                : "0 20px 48px rgba(0, 0, 0, 0.42)",
           }),
           list: {
             padding: "6px 0",
@@ -159,6 +167,10 @@ export const applyThemeWithOverrides = (themeConfig: ThemeOptions): ThemeOptions
             borderRadius: 8,
             border: "1px solid",
             borderColor: theme.palette.divider,
+            boxShadow:
+              theme.palette.mode === "light"
+                ? "0 24px 72px rgba(15, 23, 42, 0.18)"
+                : "0 24px 72px rgba(0, 0, 0, 0.52)",
           }),
         },
       },
@@ -263,13 +275,13 @@ export const useGeneratedTheme = (preferedDark?: boolean, subTheme?: boolean) =>
       mode === "light"
         ? {
             primary: { main: "#3f6fb9" },
-            background: { default: "#f4f7fb", paper: "#ffffff" },
+            background: { default: "#f8fafc", paper: "#ffffff" },
             divider: "#d4dce8",
             text: { primary: "#0f172a", secondary: "#53627a" },
           }
         : {
             primary: { main: "#7aa2f7" },
-            background: { default: "#0f172a", paper: "#111827" },
+            background: { default: "#0b1120", paper: "#111827" },
             divider: "#263247",
             text: { primary: "#eef2ff", secondary: "#a8b3c7" },
           };

@@ -1,5 +1,5 @@
 // This file is part of Cloudreve Pro edition source code, Reference ID: 1380
-import { LinearProgress, linearProgressClasses, Link, Skeleton, styled, Typography } from "@mui/material";
+import { alpha, LinearProgress, linearProgressClasses, Link, Skeleton, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { RadiusFrame } from "../RadiusFrame.tsx";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks.ts";
@@ -11,8 +11,11 @@ import { sizeToString } from "../../../util";
 import { Link as RouteLink, useNavigate } from "react-router-dom";
 
 const StyledBox = styled(RadiusFrame)(({ theme }) => ({
-  padding: theme.spacing(1.5, 2),
-  margin: theme.spacing(0, 1, 0, 1),
+  padding: theme.spacing(1.75, 2),
+  margin: theme.spacing(0, 0.75, 0, 0.75),
+  borderRadius: 12,
+  backgroundColor: theme.palette.mode === "light" ? alpha(theme.palette.common.white, 0.78) : alpha(theme.palette.common.white, 0.04),
+  boxShadow: theme.palette.mode === "light" ? "0 10px 24px rgba(15, 23, 42, 0.06)" : "none",
 }));
 
 const StorageHeaderContainer = styled("div")(() => ({
@@ -25,7 +28,7 @@ const BorderLinearProgress = styled(LinearProgress)<{ warning: boolean }>(({ the
   height: 8,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.mode === "light" ? "#e8f0f2" : theme.palette.grey[800],
+    backgroundColor: theme.palette.mode === "light" ? "#e9eef5" : theme.palette.grey[800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,

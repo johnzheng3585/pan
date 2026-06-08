@@ -89,20 +89,29 @@ export const FileManager = ({ index = 0, initialPath, skipRender }: FileManagerP
           width: "100%",
           maxWidth: index == FileManagerIndex.main ? 1400 : "none",
           mx: "auto",
-          px: index == FileManagerIndex.main ? { xs: 1.5, sm: 2.5, lg: 3 } : 0,
-          py: index == FileManagerIndex.main ? { xs: 1.5, sm: 2.5 } : 0,
+          px: index == FileManagerIndex.main ? { xs: 0, sm: 0.5, lg: 1 } : 0,
+          py: index == FileManagerIndex.main ? { xs: 0, sm: 0 } : 0,
           boxSizing: "border-box",
-          mb: index == FileManagerIndex.main && !isMobile ? 1.5 : 0,
-          overflow: "auto",
+          mb: 0,
+          overflow: "hidden",
           "&:focus": {
             outline: "none",
           },
         }}
         tabIndex={0}
-        spacing={1}
+        spacing={0.5}
       >
         <NavHeader />
-        <Box sx={{ display: "flex", flexGrow: 1, overflowY: "auto" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            minHeight: 0,
+            overflow: "hidden",
+            px: { xs: 1, sm: 2 },
+            pb: { xs: 1.5, sm: 2 },
+          }}
+        >
           <Explorer />
           {index == FileManagerIndex.main && (isTablet ? <SidebarDialog /> : <Sidebar />)}
           {index == FileManagerIndex.main && <ReadMe />}

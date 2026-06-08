@@ -15,25 +15,45 @@ const RowContainer = styled(Box)<{
   isDropOver?: boolean;
   disabled?: boolean;
 }>(({ theme, disabled, transparent, isDropOver, selected }) => {
-  let bgColor = "initial";
-  let bgColorHover = theme.palette.action.hover;
+  let bgColor = "transparent";
+  let bgColorHover =
+    theme.palette.mode === "light" ? alpha(theme.palette.primary.main, 0.045) : alpha(theme.palette.primary.main, 0.12);
 
   if (selected) {
-    bgColor = alpha(theme.palette.primary.main, 0.18);
+    bgColor =
+      theme.palette.mode === "light" ? alpha(theme.palette.primary.main, 0.08) : alpha(theme.palette.primary.main, 0.2);
     bgColorHover = bgColor;
   }
   return {
-    minHeight: "36px",
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    position: "relative",
+    minHeight: "46px",
+    margin: "3px 0",
+    borderRadius: "12px",
+    border: `1px solid ${selected ? alpha(theme.palette.primary.main, 0.16) : "transparent"}`,
     display: "flex",
     backgroundColor: bgColor,
+    color: selected ? theme.palette.primary.main : theme.palette.text.primary,
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      top: 8,
+      bottom: 8,
+      width: 3,
+      borderRadius: "0 4px 4px 0",
+      backgroundColor: selected ? theme.palette.primary.main : "transparent",
+    },
     "&:hover": {
       backgroundColor: bgColorHover,
+      borderColor: selected
+        ? alpha(theme.palette.primary.main, 0.2)
+        : alpha(theme.palette.primary.main, theme.palette.mode === "light" ? 0.08 : 0.18),
+      boxShadow: theme.palette.mode === "light" ? "0 10px 26px rgba(15, 23, 42, 0.055)" : "none",
     },
     pointerEvents: disabled ? "none" : "auto",
     opacity: transparent || disabled ? 0.5 : 1,
     transition: "all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-    transitionProperty: "background-color,opacity,box-shadow",
+    transitionProperty: "background-color,opacity,box-shadow,border-color,color",
     boxShadow: isDropOver ? `inset 0 0 0 2px ${theme.palette.primary.light}` : "none",
   };
 });
@@ -42,7 +62,15 @@ const Column = styled(Box)<{ w: number }>(({ theme, w }) => ({
   display: "flex",
   alignItems: "center",
   width: `${w}px`,
-  padding: "0 10px",
+  padding: "0 12px",
+  minWidth: 0,
+  "& .MuiTypography-root": {
+    fontSize: 13,
+    color: theme.palette.text.secondary,
+  },
+  "&:first-of-type .MuiTypography-root": {
+    color: "inherit",
+  },
 }));
 
 const Row = memo((props: FileBlockProps) => {

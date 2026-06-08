@@ -57,7 +57,7 @@ const AppMain = () => {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
         }),
-        marginRight: isMobile ? 0 : 2,
+        marginRight: isMobile || isDashboard ? 0 : 2.5,
         marginLeft: isMobile ? 0 : `-${drawerWidth - 16}px`,
         ...(open && {
           transition: theme.transitions.create("margin", {
@@ -72,6 +72,8 @@ const AppMain = () => {
         flexDirection: "column",
         width: "100%",
         overflow: "hidden",
+        pb: isMobile || isDashboard ? 0 : 2.5,
+        pr: isMobile || isDashboard ? 0 : 0.5,
       })}
       component={"main"}
     >
@@ -82,13 +84,34 @@ const AppMain = () => {
           classNames="fade"
           key={navigation.state !== "idle" ? "loading" : "idle"}
         >
-          {navigation.state !== "idle" ? (
-            <PageLoading />
-          ) : isDashboard && !isAdmin ? (
-            <Navigate to={"/home"} />
-          ) : (
-            <Outlet />
-          )}
+          <Box
+            sx={(theme) => ({
+              height: "100%",
+              minHeight: 0,
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
+              ...(isDashboard || isMobile
+                ? {}
+                : {
+                    borderRadius: 3,
+                    bgcolor: theme.palette.background.paper,
+                    border: `1px solid ${theme.palette.divider}`,
+                    boxShadow:
+                      theme.palette.mode === "light"
+                        ? "0 2px 12px rgba(15, 23, 42, 0.03), 0 18px 48px rgba(15, 23, 42, 0.05)"
+                        : "0 18px 48px rgba(0, 0, 0, 0.34)",
+                  }),
+            })}
+          >
+            {navigation.state !== "idle" ? (
+              <PageLoading />
+            ) : isDashboard && !isAdmin ? (
+              <Navigate to={"/home"} />
+            ) : (
+              <Outlet />
+            )}
+          </Box>
         </CSSTransition>
       </SwitchTransition>
     </Box>

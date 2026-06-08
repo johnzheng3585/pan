@@ -111,14 +111,20 @@ const Explorer = () => {
 
   return (
     <RadiusFrame
-      withBorder={!isMobile}
+      withBorder={false}
       square={isMobile}
       sx={{
         flexGrow: 1,
         minHeight: 0,
         overflow: "auto",
-        boxShadow: "0 1px 2px rgba(15, 23, 42, 0.03)",
-        backgroundColor: (theme) => (theme.palette.mode === "light" ? "#ffffff" : theme.palette.background.paper),
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        "&::-webkit-scrollbar": {
+          width: 0,
+          height: 0,
+        },
+        boxShadow: "none",
+        backgroundColor: "transparent",
       }}
       ref={selectContainerRef}
       onContextMenu={onContextMenu}
