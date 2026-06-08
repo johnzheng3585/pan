@@ -221,13 +221,11 @@ export const getColumnTypeDefaults = (
   isMobile?: boolean,
   customProps?: CustomProps[],
 ): ColumTypeDefaults => {
-  if (ColumnTypeDefaults[c.type]) {
+  const defaults = ColumnTypeDefaults[c.type];
+  if (defaults) {
     return {
-      ...ColumnTypeDefaults[c.type],
-      width:
-        isMobile && ColumnTypeDefaults[c.type].widthMobile
-          ? ColumnTypeDefaults[c.type].widthMobile
-          : ColumnTypeDefaults[c.type].width,
+      ...defaults,
+      width: isMobile && defaults.widthMobile ? defaults.widthMobile : defaults.width,
     };
   }
 
@@ -287,6 +285,7 @@ const SortArrow = styled(ArrowSortDownFilled)<{
 const Column = ({ column, showDivider, index, startResizing, sortDirection, setSortBy, sortable }: ColumnProps) => {
   const [showSortButton, setShowSortButton] = useState(false);
   const { t } = useTranslation();
+  const width = column.width ?? column.defaults.width ?? 100;
   const onSortOptionChange = useCallback(() => {
     if (!sortable || !column.defaults.order_by) return;
     const newDirection = sortDirection === "asc" ? "desc" : "asc";
@@ -294,7 +293,7 @@ const Column = ({ column, showDivider, index, startResizing, sortDirection, setS
   }, [setSortBy, sortDirection, sortable, column]);
 
   return (
-    <ColumnContainer w={column.width ?? column.defaults.width}>
+    <ColumnContainer w={width}>
       <Box
         sx={{
           width: "100%",

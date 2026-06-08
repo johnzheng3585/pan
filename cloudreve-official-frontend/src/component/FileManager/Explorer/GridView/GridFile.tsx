@@ -46,7 +46,7 @@ const StyledButtonBase = styled(ButtonBase)<{
   square?: boolean;
   transparent?: boolean;
   isDropOver?: boolean;
-}>(({ theme, transparent, isDropOver, square, selected }) => {
+}>(({ theme, transparent, isDropOver, selected }) => {
   let bgColor = theme.palette.mode === "light" ? "#ffffff" : theme.palette.background.paper;
   let bgColorHover = theme.palette.mode === "light" ? "#f8fbff" : theme.palette.grey[800];
 
@@ -147,7 +147,7 @@ export const ThumbLoadingPlaceholder = styled(Skeleton)(() => ({
   width: "100%",
 }));
 
-export const LargeIconContainer = styled(Box)(({ theme }) => ({
+export const LargeIconContainer = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
