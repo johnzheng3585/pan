@@ -3,7 +3,7 @@
     "title": "ドライブを追加",
     "description": "糖果盘 サイトの URL を入力して接続します",
     "siteUrl": "サイト URL",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "接続",
     "waitingTitle": "サインインして続行",
     "waitingDescription": "ブラウザでサインインを完了してドライブに接続してください。",

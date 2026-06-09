@@ -409,7 +409,7 @@ impl Mount {
             }
             sync_root_info.set_version("1.0.0");
             sync_root_info
-                .set_recycle_bin_uri(recycle_bin_url(&config).unwrap_or_else(|_| "https://api.pan.tg".to_string()))
+                .set_recycle_bin_uri(recycle_bin_url(&config).unwrap_or_else(|_| "https://pan.tg".to_string()))
                 .context("failed to set recycle bin uri")?;
             sync_root_info
                 .set_path(Path::new(&config.sync_path))

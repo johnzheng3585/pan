@@ -65,7 +65,7 @@ cargo tauri build
 
 The built binary will be at `target/release/cloudreve-desktop.exe`.
 
-The default API site used by the add-drive flow is `https://api.pan.tg`.
+The default site used by the add-drive flow is `https://pan.tg`.
 The user-facing authorization page is opened through `https://pan.tg`.
 
 ### OAuth Application
@@ -78,7 +78,7 @@ Keep these values aligned with the client:
 客户端 ID: 393a1839-f52e-498e-9972-e77cc2241eee
 重定向 URI: /callback/desktop
 用户入口: https://pan.tg
-API 入口: https://api.pan.tg
+API 入口: https://pan.tg/api/v4
 ```
 
 The app icon shown on the server authorization page can be changed in the admin panel.

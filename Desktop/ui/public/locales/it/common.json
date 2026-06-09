@@ -3,7 +3,7 @@
     "title": "Aggiungi unità",
     "description": "Inserisci l'URL del tuo sito 糖果盘 per connetterti",
     "siteUrl": "URL del sito",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "Connetti",
     "waitingTitle": "Accedi per continuare",
     "waitingDescription": "Completa il processo di accesso nel browser per connettere l'unità.",

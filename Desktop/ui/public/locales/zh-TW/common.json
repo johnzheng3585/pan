@@ -3,7 +3,7 @@
     "title": "新增雲端硬碟",
     "description": "輸入您的 糖果盘 網站 URL 進行連接",
     "siteUrl": "網站 URL",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "連接",
     "waitingTitle": "登入以繼續",
     "waitingDescription": "請在瀏覽器中完成登入流程以連接您的雲端硬碟。",

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Typography, Link, Chip, Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { getVersion } from "@tauri-apps/api/app";
-import logo from "../../assets/app.svg";
+import logo from "../../assets/app.png";
 import { HomeRounded } from "@mui/icons-material";
 import { APP_DISPLAY_NAME, APP_HOME_URL, APP_NAME } from "../../utils/branding";
 

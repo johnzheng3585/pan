@@ -3,7 +3,7 @@
     "title": "드라이브 추가",
     "description": "糖果盘 사이트 URL을 입력하여 연결하세요",
     "siteUrl": "사이트 URL",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "연결",
     "waitingTitle": "로그인하여 계속하기",
     "waitingDescription": "브라우저에서 로그인을 완료하여 드라이브에 연결하세요.",

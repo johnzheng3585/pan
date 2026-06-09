@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import logoDark from "../assets/logo.svg";
-import logoLight from "../assets/logo_light.svg";
+import logoDark from "../assets/logo.png";
+import logoLight from "../assets/logo_light.png";
 import { APP_NAME } from "../utils/branding";
 
 interface AppLogoProps {

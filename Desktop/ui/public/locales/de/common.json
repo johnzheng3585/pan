@@ -3,7 +3,7 @@
     "title": "Laufwerk hinzufügen",
     "description": "Geben Sie Ihre 糖果盘-Website-URL ein, um eine Verbindung herzustellen",
     "siteUrl": "Website-URL",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "Verbinden",
     "waitingTitle": "Zum Fortfahren anmelden",
     "waitingDescription": "Schließen Sie den Anmeldevorgang in Ihrem Browser ab, um Ihr Laufwerk zu verbinden.",

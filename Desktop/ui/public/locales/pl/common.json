@@ -3,7 +3,7 @@
     "title": "Dodaj dysk",
     "description": "Wprowadź adres URL swojej witryny 糖果盘, aby się połączyć",
     "siteUrl": "Adres URL witryny",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "Połącz",
     "waitingTitle": "Zaloguj się, aby kontynuować",
     "waitingDescription": "Zakończ proces logowania w przeglądarce, aby połączyć dysk.",

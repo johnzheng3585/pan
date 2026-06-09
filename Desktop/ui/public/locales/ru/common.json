@@ -3,7 +3,7 @@
     "title": "Добавить диск",
     "description": "Введите URL вашего сайта 糖果盘 для подключения",
     "siteUrl": "URL сайта",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "Подключить",
     "waitingTitle": "Войдите для продолжения",
     "waitingDescription": "Завершите процесс входа в браузере для подключения диска.",

@@ -3,7 +3,7 @@
     "title": "Add Tangguopan Drive",
     "description": "Sign in to your Tangguopan account and choose a folder to sync locally.",
     "siteUrl": "Site URL",
-    "siteUrlPlaceholder": "https://api.pan.tg",
+    "siteUrlPlaceholder": "https://pan.tg",
     "connect": "Sign in and Connect",
     "waitingTitle": "Sign in to continue",
     "waitingDescription": "Complete the sign-in process in your browser to connect your drive.",
